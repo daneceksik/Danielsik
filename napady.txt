@@ -1,0 +1,5 @@
+Optimalizace rychlosti: Až budeš mít web na GitHubu, otestuj ho přes PageSpeed Insights. Ukáže ti, jestli nemáš moc velké obrázky.
+
+Custom 404 stránka: Vytvoř soubor 404.html. Když někdo zadá špatnou adresu, uvidí tvoji vtipnou hlášku a tlačítko "Zpět domů" místo ošklivé chyby prohlížeče.
+
+Sitemap a Robots.txt: Důležité pro to, aby tě Google správně "prolezl" a indexoval.
