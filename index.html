@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CKHLW6HQL7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-CKHLW6HQL7');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKHLW6HQL7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-CKHLW6HQL7');
+    </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -17,7 +16,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
-    <title>Daniel Šik | Tvorba webů Šumperk</title>
+    <title>Daniel Šik | Tvorba webů</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -34,7 +33,6 @@
             --border: #334155;
         }
 
-        /* Light Mode barvy */
         body.light-mode {
             --bg: #f1f5f9;
             --text: #0f172a;
@@ -53,6 +51,12 @@
             scroll-behavior: smooth;
             transition: background-color 0.3s, color 0.3s;
         }
+
+        /* --- Scrollbar --- */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(var(--primary), var(--secondary)); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
 
         /* --- NAVIGACE --- */
         header {
@@ -74,9 +78,7 @@
         }
 
         .logo { font-weight: bold; font-size: 1.5rem; color: var(--primary); text-decoration: none; }
-
         nav { display: flex; gap: 10px; align-items: center; }
-
         nav a {
             color: var(--text);
             text-decoration: none;
@@ -86,7 +88,6 @@
             transition: 0.3s;
             font-size: 0.9rem;
         }
-
         nav a.active { background-color: var(--primary); color: #000; }
         nav a:hover:not(.active) { color: var(--primary); }
 
@@ -109,12 +110,39 @@
             background: radial-gradient(circle at center, var(--card-bg) 0%, var(--bg) 100%);
         }
 
-        .hero h1 { 
-            font-size: clamp(2.5rem, 8vw, 4rem); 
-            margin-bottom: 1rem; 
-            background: linear-gradient(to right, var(--text), var(--primary)); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            margin-bottom: 1rem;
+            min-height: 1.2em; /* Prevence skákání layoutu */
+        }
+
+        .hero h1 span {
+            background: linear-gradient(-45deg, var(--text), var(--primary), var(--secondary), var(--text));
+            background-size: 300% 300%;
+            animation: gradient 5s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Kurzor pro typing efekt */
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: var(--primary);
+            margin-left: 5px;
+            animation: blink 0.7s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         .hero p { color: #94a3b8; font-size: 1.2rem; max-width: 700px; margin: 0 auto 2.5rem; }
@@ -124,7 +152,6 @@
 
         /* --- PORTFOLIO --- */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-
         .card {
             background: var(--card-bg);
             border-radius: 15px;
@@ -132,15 +159,36 @@
             transition: 0.3s ease;
             overflow: hidden;
         }
-
-        .card:hover { transform: translateY(-5px); border-color: var(--primary); }
-
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
         .portfolio-img img { width: 100%; height: 220px; object-fit: cover; display: block; transition: 0.5s; }
         .portfolio-card:hover .portfolio-img img { transform: scale(1.05); }
         .portfolio-content { padding: 25px; }
         .tech-tags { margin: 15px 0; display: flex; flex-wrap: wrap; gap: 8px; }
         .tech-tags span { background: rgba(0, 210, 255, 0.1); color: var(--primary); padding: 4px 12px; border-radius: 5px; font-size: 0.75rem; font-weight: bold; }
         .portfolio-link { color: var(--primary); text-decoration: none; font-weight: bold; display: inline-block; margin-top: 10px; }
+
+        /* --- DOVEDNOSTI WRAPPER --- */
+        .skills-wrapper {
+            margin: 80px auto; 
+            padding: 30px;
+            background: var(--card-bg);
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            max-width: 900px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .skills-wrapper i {
+            font-size: 2.2rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .skills-wrapper i:hover {
+            transform: scale(1.2);
+            color: var(--primary);
+        }
 
         /* --- O MNĚ --- */
         .about-flex { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; margin-top: 40px; }
@@ -151,8 +199,27 @@
 
         /* --- PROCES --- */
         .process { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; }
-        .step { background: var(--card-bg); padding: 35px 25px; border-radius: 15px; text-align: center; border: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; }
-        .step-icon { font-size: 3rem; color: var(--secondary); background: rgba(58, 123, 213, 0.1); width: 90px; height: 90px; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin-bottom: 20px; position: relative; }
+        .step { 
+            background: var(--card-bg); 
+            padding: 35px 25px; 
+            border-radius: 15px; 
+            text-align: center; 
+            border: 1px solid var(--border); 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .step:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 15px 30px rgba(0, 210, 255, 0.15);
+        }
+        .step:hover .step-icon {
+            background: var(--primary);
+            color: #000;
+        }
+        .step-icon { font-size: 3rem; color: var(--secondary); background: rgba(58, 123, 213, 0.1); width: 90px; height: 90px; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin-bottom: 20px; position: relative; transition: 0.3s; }
         .step-num { width: 30px; height: 30px; background: var(--primary); color: #000; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; position: absolute; top: 0; right: 0; font-size: 0.8rem; }
 
         /* --- KONTAKT --- */
@@ -162,7 +229,7 @@
         input:focus, textarea:focus { border-color: var(--primary); }
 
         .btn { display: inline-block; background: linear-gradient(to right, var(--primary), var(--secondary)); color: white; padding: 15px 35px; border-radius: 30px; text-decoration: none; font-weight: bold; border: none; cursor: pointer; transition: 0.3s; }
-        .btn:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .btn:hover { box-shadow: 0 0 20px rgba(0, 210, 255, 0.6); transform: translateY(-3px); }
 
         footer { text-align: center; padding: 5rem 0; border-top: 1px solid var(--border); margin-top: 6rem; color: #64748b; }
 
@@ -170,6 +237,7 @@
             .nav-container { flex-direction: column; gap: 15px; }
             .section-title { font-size: 2rem; }
             .hero { padding: 5rem 0 3rem; }
+            .skills-wrapper { margin: 40px auto; gap: 25px; }
         }
     </style>
 </head>
@@ -190,14 +258,13 @@
 
 <div class="hero">
     <div class="container" data-aos="fade-up">
-        <h1>Digitální řešení na míru</h1>
+        <h1>Daniel Šik: <span id="typing-text"></span><span class="cursor"></span></h1>
         <p>Tvořím rychlé a moderní weby, které vás odliší od konkurence. Zaměřuji se na čistý kód a funkční design.</p>
         <a href="#kontakt" class="btn">Pojďme začít projekt</a>
     </div>
 </div>
 
 <div class="container">
-    
     <h2 id="portfolio" class="section-title" data-aos="fade-up">Moje <span>ukázky</span> práce</h2>
     <div class="grid">
         <div class="card portfolio-card" data-aos="zoom-in" data-aos-delay="100">
@@ -218,6 +285,18 @@
                 <div class="tech-tags"><span>HTML5</span> <span>CSS3</span> <span>JS</span></div>
                 <a href="projekt2/index.html" target="_blank" class="portfolio-link">Prohlédnout web <i class="fas fa-external-link-alt"></i></a>
             </div>
+        </div>
+    </div>
+
+    <div class="container" data-aos="fade-up">
+        <div class="skills-wrapper">
+            <i class="fab fa-html5" title="HTML5" style="color: #e34c26;"></i>
+            <i class="fab fa-css3-alt" title="CSS3" style="color: #264de4;"></i>
+            <i class="fab fa-js" title="JavaScript" style="color: #f7df1e;"></i>
+            <i class="fab fa-git-alt" title="Git" style="color: #f1502f;"></i>
+            <i class="fab fa-wordpress" title="WordPress" style="color: #21759b;"></i>
+            <i class="fab fa-figma" title="Figma" style="color: #f24e1e;"></i>
+            <i class="fas fa-terminal" title="Terminal"></i>
         </div>
     </div>
 
@@ -260,40 +339,49 @@
         </div>
     </div>
 
+    <h2 class="section-title" data-aos="fade-up">Časté <span>dotazy</span></h2>
+    <div class="container" style="max-width: 800px; margin-bottom: 5rem;">
+        <details style="margin-bottom: 15px; background: var(--card-bg); padding: 20px; border-radius: 15px; border: 1px solid var(--border); cursor: pointer;">
+            <summary style="font-weight: bold; font-size: 1.1rem; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                Kolik stojí tvorba webu? <i class="fas fa-plus"></i>
+            </summary>
+            <p style="margin-top: 15px; color: #94a3b8;">Cena je individuální, ale základní webové vizitky začínají na 5 000 Kč. Přesnou kalkulaci vám pošlu po první konzultaci.</p>
+        </details>
+        
+        <details style="margin-bottom: 15px; background: var(--card-bg); padding: 20px; border-radius: 15px; border: 1px solid var(--border); cursor: pointer;">
+            <summary style="font-weight: bold; font-size: 1.1rem; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                Jak dlouho to bude trvat? <i class="fas fa-plus"></i>
+            </summary>
+            <p style="margin-top: 15px; color: #94a3b8;">Jednodušší weby mám hotové do týdne, složitější projekty obvykle do 14 dnů.</p>
+        </details>
+    </div>
+
     <h2 id="kontakt" class="section-title" data-aos="fade-up">Napište mi <span>poptávku</span></h2>
     <div class="contact-form" data-aos="zoom-in">
         <form action="https://formspree.io/f/xpqkwlln" method="POST">
-           <div class="contact-form" data-aos="zoom-in">
-    <form action="https://formspree.io/f/TVOJE_ID" method="POST">
-        
-        <div class="form-group">
-            <input type="text" name="name" placeholder="Vaše jméno" required>
-        </div>
-        
-        <div class="form-group">
-            <input type="email" name="_replyto" placeholder="Váš e-mail" required>
-        </div>
-        
-        <div class="form-group">
-            <textarea name="message" rows="5" placeholder="O čem je váš projekt?" required></textarea>
-        </div>
-
-        <input type="hidden" name="_subject" value="Nová poptávka z webu!">
-
-        <div style="text-align: center;">
-            <button type="submit" class="btn">Odeslat zprávu</button>
-        </div>
-    </form>
-</div>
-
+            <div class="form-group">
+                <input type="text" name="name" placeholder="Vaše jméno" required>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Váš e-mail" required>
+            </div>
+            <div class="form-group">
+                <textarea name="message" rows="5" placeholder="O čem je váš projekt?" required></textarea>
+            </div>
+            <input type="hidden" name="_subject" value="Nová poptávka z webu Daniel Šik">
+            <div style="text-align: center;">
+                <button type="submit" class="btn">Odeslat zprávu</button>
+            </div>
+        </form>
+    </div>
 </div>
 
 <footer>
     <div class="container">
-        <p>&copy; 2026 • Daniel Šik • Programátor ze Šumperka</p>
+        <p>&copy; 2026 • Daniel Šik • Programátor & Designér</p>
         <div style="margin-top: 20px; font-size: 1.5rem;">
             <a href="#" style="color: var(--primary); margin: 0 10px;"><i class="fab fa-linkedin"></i></a>
-            <a href="#" style="color: var(--primary); margin: 0 10px;"><i class="fab fa-github"></i></a>
+            <a href="https://github.com/daneceksik" style="color: var(--primary); margin: 0 10px;"><i class="fab fa-github"></i></a>
             <a href="https://www.instagram.com/danielsik_" target="_blank" style="color: var(--primary); margin: 0 10px;"><i class="fab fa-instagram"></i></a>
         </div>
     </div>
@@ -303,6 +391,7 @@
 <script>
     AOS.init({ duration: 1000, once: true });
 
+    // Dark/Light mode toggle
     const toggleBtn = document.getElementById('theme-toggle');
     const body = document.body;
     const icon = toggleBtn.querySelector('i');
@@ -312,6 +401,30 @@
         icon.classList.toggle('fa-moon');
         icon.classList.toggle('fa-sun');
     });
+
+    // Typing efekt
+    const textElement = document.getElementById('typing-text');
+    const phrases = ['Moderní weby.', 'Rychlý kód.', 'Řešení na míru.'];
+    let i = 0, j = 0, isDeleting = false;
+
+    function type() {
+      const currentPhrase = phrases[i];
+      textElement.textContent = isDeleting 
+        ? currentPhrase.substring(0, j--) 
+        : currentPhrase.substring(0, j++);
+      
+      if (!isDeleting && j === currentPhrase.length + 1) { 
+        isDeleting = true; 
+        setTimeout(type, 2000); 
+      } else if (isDeleting && j === 0) { 
+        isDeleting = false; 
+        i = (i + 1) % phrases.length; 
+        setTimeout(type, 500); 
+      } else { 
+        setTimeout(type, isDeleting ? 50 : 100); 
+      }
+    }
+    type();
 </script>
 
 </body>
