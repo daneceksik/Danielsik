@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubytování Sherpa | Rodinný penzion s wellness | Linhartice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ZÁKLADNÍ NASTAVENÍ A MODERNÍ BARVY --- */
+        :root {
+            /* Nová, sofistikovanější paleta */
+            --primary: #4A6741;      /* Hluboká lesní zelená */
+            --primary-dark: #354a2e;
+            --accent: #D4A373;       /* Teplá písková */
+            --text-main: #2C3E50;    /* Tmavě břidlicová */
+            --text-light: #6C7A89;   /* Jemná šedá pro popisy */
+            --bg-body: #FFFFFF;
+            --bg-alt: #F8F9FA;       /* Velmi světlý podklad pro kontrast sekcí */
+            --white: #ffffff;
+            
+            /* Moderní stíny */
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 30px rgba(0,0,0,0.08);
+            
+            /* Plynulé přechody */
+            --transition: all 0.3s ease-in-out;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Plynulé rolování i bez JS */
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif; /* Hlavní moderní font */
+            color: var(--text-main);
+            line-height: 1.8; /* Větší rozestup řádků pro vzdušnost */
+            background-color: var(--bg-body);
+            overflow-x: hidden;
+        }
+
+        /* Nadpisy s patkovým fontem pro prémiový vzhled */
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- OBECNÉ TŘÍDY --- */
+        section {
+            padding: 10rem 10%; /* Výrazně větší odsazení sekcí */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.5rem; /* Větší nadpisy */
+            margin-bottom: 5rem;
+            position: relative;
+            line-height: 1.2;
+        }
+
+        /* Jemná linka pod nadpisem */
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* Moderní tlačítka */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--primary);
+            color: var(--white);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 50px; /* Plně kulaté rohy */
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px); /* Jemné zvednutí */
+            box-shadow: 0 5px 15px rgba(74, 103, 65, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* --- HLAVIČKA A NAVIGACE --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.98);
+            padding: 1rem 10%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        nav ul li a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            position: relative;
+        }
+
+        /* Animační podtržení v menu */
+        nav ul li a::after {
+            content: '';
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* --- HERO SEKCE (Úvod) --- */
+        .hero {
+            height: 100vh;
+            /* VYMĚŇTE URL ZA VLASTNÍ KVALITNÍ FOTKU */
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2070&auto=format&fit=crop') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 5rem; /* Obrovský nadpis */
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            opacity: 0;
+            animation: fadeInDown 1s forwards; /* Animace při načtení */
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            max-width: 700px;
+            margin-bottom: 3rem;
+            color: rgba(255,255,255,0.9);
+            opacity: 0;
+            animation: fadeInUp 1s 0.5s forwards; /* Zpožděná animace */
+        }
+
+        .hero .btn {
+            opacity: 0;
+            animation: fadeInUp 1s 1s forwards;
+        }
+
+        /* --- O NÁS / VLASTNOSTI --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px; /* Moderní zaoblení */
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Ikony - zvětšené a barevné */
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* --- POKOJE --- */
+        .rooms {
+            background-color: var(--bg-alt); /* Odlišení pozadí */
+        }
+
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 4rem;
+        }
+
+        .room-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .room-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* VYMĚŇTE FOTKY ZA VLASTNÍ REÁLNÉ */
+        .room-img-wrapper {
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .room-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .room-card:hover .room-img {
+            transform: scale(1.05); /* Jemný zoom na fotce při hoveru */
+        }
+
+        .room-content {
+            padding: 3rem;
+        }
+
+        .room-content h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .room-content p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .room-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-main);
+            font-size: 0.9rem;
+        }
+
+        .room-details li::before {
+            content: '✓'; /* Moderní checkmark */
+            color: var(--primary);
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* --- WELLNESS - MODERNÍ SPLIT LAYOUT --- */
+        .wellness {
+            padding: 0; /* Bez paddingu, fotka jde ke kraji */
+            display: flex;
+            align-items: center;
+            background-color: var(--white);
+        }
+
+        .wellness-content {
+            flex: 1;
+            padding: 10rem 5% 10rem 10%;
+        }
+
+        .wellness-image-container {
+            flex: 1;
+            height: 100%;
+            min-height: 80vh;
+            /* VYMĚŇTE ZA FOTKU SUdu NEBO MASÁŽÍ */
+            background: url('https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=2070&auto=format&fit=crop') center/cover;
+        }
+
+        .wellness-content .section-title {
+            text-align: left;
+            margin-bottom: 3rem;
+        }
+
+        .wellness-content .section-title::after {
+            left: 0;
+            transform: none;
+        }
+
+        .wellness-list li {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        .wellness-list strong {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        /* --- RECENZE --- */
+        .reviews {
+            background-color: var(--bg-alt);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .review-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .review-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-5px);
+        }
+
+        /* Ikona uvozovek */
+        .quote-icon {
+            font-size: 4rem;
+            color: rgba(212, 163, 115, 0.2);
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .review-text {
+            font-style: italic;
+            color: var(--text-main);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+
+        .review-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            padding-top: 1.5rem;
+        }
+
+        .review-author {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .review-rating {
+            color: #F1C40F; /* Zlatá pro hvězdy */
+            letter-spacing: 2px;
+        }
+
+        /* --- KONTAKT A MAPA --- */
+        .contact {
+            background-color: var(--bg-body);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .contact-details h3 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(74, 103, 65, 0.1);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .map-wrapper {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            height: 400px;
+        }
+
+        /* --- PATIČKA --- */
+        footer {
+            text-align: center;
+            padding: 3rem;
+            background-color: #2c3e50;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+
+        /* --- ANIMACE DEFINICE --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- RESPONSIVITA (MOBILY) --- */
+        @media (max-width: 1024px) {
+            section { padding: 7rem 5%; }
+            .hero h1 { font-size: 3.5rem; }
+            .wellness { flex-direction: column; }
+            .wellness-content { padding: 7rem 5%; }
+            .wellness-image-container { width: 100%; min-height: 50vh; }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 1rem 5%; flex-direction: column; gap: 1rem; }
+            nav ul { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+            .section-title { font-size: 2.8rem; }
+            .rooms-grid, .contact-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Sherpa</div>
+        <nav>
+            <ul>
+                <li><a href="#o-nas">O nás</a></li>
+                <li><a href="#pokoje">Pokoje</a></li>
+                <li><a href="#wellness">Wellness</a></li>
+                <li><a href="#recenze">Recenze</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </nav>
+        <a href="#kontakt" class="btn btn-sm">Rezervovat</a>
+    </header>
+
+    <section id="uvod" class="hero">
+        <div class="container">
+            <h1>Váš klidný přístav</h1>
+            <p>Objevte prostorné apartmány, vřelé přijetí a dokonalou domácí pohodu v srdci Linhartic. Místo, kam se budete rádi vracet.</p>
+            <a href="#pokoje" class="btn btn-outline">Prohlédnout ubytování</a>
+        </div>
+    </section>
+
+    <section id="o-nas">
+        <div class="container">
+            <h2 class="section-title">Zážitky, na které nezapomenete</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏠</div>
+                    <h3>Rodinná péče</h3>
+                    <p>U nás nejste jen hosté. Zakládáme si na vřelém osobním přístupu a maximální čistotě, abyste se cítili opravdu jako doma.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌿</div>
+                    <h3>Dokonalý relax</h3>
+                    <p>Uvolněte se ve venkovním vyhřívaném sudu, infrasauně, nebo se svěřte do rukou paní majitelky na úžasnou masáž.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚴‍♂️</div>
+                    <h3>Ráj pro výletníky</h3>
+                    <p>Skvělá poloha pro objevování hradu Bouzov či Moravské Třebové. Bezpečné parkování pro motorkáře i cyklisty je samozřejmostí.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pokoje" class="rooms">
+        <div class="container">
+            <h2 class="section-title">Naše apartmány</h2>
+            <div class="rooms-grid">
+                <div class="room-card">
+                    <div class="room-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1522770179533-24471fcdba45?q=80&w=2070&auto=format&fit=crop" alt="Velký podkrovní apartmán" class="room-img">
+                    </div>
+                    <div class="room-content">
+                        <h3>Podkrovní apartmán</h3>
+                        <p>Obrovský a vzdušný prostor ideální pro větší rodiny nebo skupiny přátel, kde má každý své soukromí.</p>
+                        <ul class="room-details">
+                            <li>Až pro 9 osob</li>
+                            <li>Několik ložnic</li>
+                            <li>2 koupelny</li>
+                            <li>Vybavená kuchyně</li>
+                            <li>Soukromá terasa</li>
+                        </ul>
+                        <a href="#kontakt" class="btn">Mám zájem</a>
+                    </div>
+                </div>
+                <div class="room-card">
+                    <div class="room-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=2070&auto=format&fit=crop" alt="Útulné studio pro páry" class="room-img">
+                    </div>
+                    <div class="room-content">
+                        <h3>Útulná Studia</h3>
+                        <p>Dokonalé pohodlí a klid pro páry nebo jednotlivce s nadstandardním vybavením pro váš relax.</p>
+                        <ul class="room-details">
+                            <li>Manželská postel</li>
+                            <li>Vlastní koupelna</li>
+                            <li>Kávovar (káva zdarma)</li>
+                            <li>Rychlá Wi-Fi</li>
+                            <li>Televize</li>
+                        </ul>
+                        <a href="#kontakt" class="btn">Mám zájem</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="wellness" class="wellness">
+        <div class="wellness-content">
+            <h2 class="section-title">Čas jen pro vás</h2>
+            <p style="color: var(--text-light); margin-bottom: 2rem; font-size: 1.1rem;">Dovolená u nás není jen o přespání. Dopřejte svému tělu i mysli zasloužený odpočinek přímo v našem penzionu.</p>
+            <ul class="wellness-list">
+                <li><strong>Gurmánský start:</strong> Bohaté, pestré a s láskou připravované snídaně.</li>
+                <li><strong>Horká lázeň:</strong> Venkovní vyhřívaný sud s vířivkou pod širým nebem.</li>
+                <li><strong>Prohřátí těla:</strong> Moderní infrasauna pro vaši imunitu.</li>
+                <li><strong>Dokonalé uvolnění:</strong> Profesionální masáže zad a kosmetika od paní majitelky.</li>
+            </ul>
+        </div>
+        <div class="wellness-image-container">
+            </div>
+    </section>
+
+    <section id="recenze" class="reviews">
+        <div class="container">
+            <h2 class="section-title">Co říkají naši hosté</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="quote-icon">“</div>
+                    <p class="review-text">Nadstandard. Obrovský apartmán, několik oddělených ložnic a dvě koupelny, takže nás 9 lidí se pohodlně vešlo. Uvnitř vše dokonale čisté. Venkovní terasa jako bonus.</p>
+                    <div class="review-meta">
+                        <span class="review-author">Vladimír Homola</span>
+                        <span class="review-rating">★★★★★</span>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="quote-icon">“</div>
+                    <p class="review-text">Krásné čisté ubytování s možností super masáže zad a kosmetikou. Paní majitelka velmi příjemná a ochotná.</p>
+                    <div class="review-meta">
+                        <span class="review-author">Katka Katka</span>
+                        <span class="review-rating">★★★★★</span>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="quote-icon">“</div>
+                    <p class="review-text">Majitel dělá pro hosty vše, bohatou a pestrou snídani a večeři. Doporučuji ho zejména motorkářům, v okolí je mnoho vynikajících silnic.</p>
+                    <div class="review-meta">
+                        <span class="review-author">Kázmér Cseman</span>
+                        <span class="review-rating">★★★★★</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="kontakt" class="contact">
+        <div class="container">
+            <h2 class="section-title">Těšíme se na vás</h2>
+            <div class="contact-grid">
+                <div class="contact-details">
+                    <h3>Rezervujte si svůj pobyt</h3>
+                    <p style="color: var(--text-light); margin-bottom: 3rem;">Zavolejte nám nebo napište e-mail. Rádi ověříme dostupnost a připravíme nabídku přímo pro vás.</p>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <p>Linhartice 194, 571 01 Moravská Třebová</p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <p>+420 777 328 240</p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <p>penzionsherpa@gmail.com</p>
+                    </div>
+                </div>
+                <div class="map-wrapper">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2562.905470783021!2d16.666673176964917!3d49.75624793688176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4712019955a5b565%3A0x6d1f0440620311f!2sLinhartice%20194%2C%20571%2001%20Linhartice!5e0!3m2!1scs!2scz!4v1711531234567!5m2!1scs!2scz" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 Ubytování Sherpa Linhartice. Všechna práva vyhrazena.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

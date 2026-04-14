@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penzion a Kemp Mlýn | Velké Losiny</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green: #2d6a4f;
+            --dark: #1b4332;
+            --wood: #bc6c25;
+            --light: #fefae0;
+            --white: #ffffff;
+            --gray: #f4f4f4;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; color: #333; background-color: var(--gray); line-height: 1.6; }
+        
+        /* Navigace */
+        nav { background: var(--dark); color: var(--white); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        nav .logo { font-size: 1.5rem; font-weight: 800; color: var(--light); text-decoration: none; }
+        nav ul { display: flex; list-style: none; gap: 20px; }
+        nav ul a { color: var(--white); text-decoration: none; font-weight: 600; transition: color 0.3s; }
+        nav ul a:hover { color: var(--wood); }
+
+        /* Hero sekce */
+        .hero { 
+            height: 80vh; 
+            background: linear-gradient(rgba(27, 67, 50, 0.7), rgba(27, 67, 50, 0.7)), url('https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--white); padding: 20px;
+        }
+        .hero h1 { font-size: 4rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
+        .hero p { font-size: 1.5rem; font-weight: 600; margin-bottom: 30px; color: var(--light); }
+        .badges { display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; justify-content: center; }
+        .badge { background: var(--wood); padding: 10px 20px; border-radius: 30px; font-weight: bold; font-size: 0.9rem; }
+
+        /* Obecný layout sekcí */
+        section { padding: 80px 5%; max-width: 1200px; margin: auto; }
+        h2 { font-size: 2.5rem; color: var(--green); margin-bottom: 30px; text-align: center; border-bottom: 3px solid var(--wood); display: inline-block; padding-bottom: 10px; }
+        .center-heading { text-align: center; margin-bottom: 50px; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+        @media (max-width: 768px) { 
+            .grid-2 { grid-template-columns: 1fr; } 
+            nav { flex-direction: column; gap: 15px; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+
+        /* Tabulky ceníku */
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: var(--white); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: var(--green); color: var(--white); }
+        tr:hover { background-color: #f1f1f1; }
+
+        /* Zvýraznění (Alerts) */
+        .alert-box { background: #ffeeba; border-left: 5px solid #ffc107; padding: 15px; margin: 20px 0; font-weight: 600; color: #856404; }
+
+        /* Vlastnosti kempu */
+        .features-box { background: var(--light); padding: 30px; border-radius: 10px; box-shadow: inset 0 0 20px rgba(0,0,0,0.05); margin-top: 20px; }
+        ul.custom-list { list-style: none; margin-bottom: 20px; }
+        ul.custom-list li { margin-bottom: 10px; padding-left: 25px; position: relative; font-weight: 600; }
+        ul.custom-list li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: bold; }
+
+        /* Patička */
+        footer { background: var(--dark); color: var(--white); padding: 50px 5%; text-align: center; margin-top: 50px; }
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 1000px; margin: 30px auto; text-align: left; }
+        .contact-grid h3 { color: var(--wood); margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">Penzion & Kemp Mlýn</a>
+        <ul>
+            <li><a href="#penzion">Penzion</a></li>
+            <li><a href="#kemp">Kemp</a></li>
+            <li><a href="#okoli">Okolí</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1>Penzion a kemp Mlýn</h1>
+        <p>Pohoda v srdci Velkých Losin</p>
+        <div class="badges">
+            <div class="badge">🏰 200 m od zámku</div>
+            <div class="badge">🏊 400 m od termálů</div>
+            <div class="badge">🚿 Teplá sprcha bez žetonů</div>
+            <div class="badge">🅿️ Parkování zdarma</div>
+        </div>
+    </header>
+
+    <section id="penzion">
+        <div class="center-heading">
+            <h2>Ubytování v Penzionu</h2>
+            <p style="max-width: 800px; margin: auto; font-size: 1.1rem;">Účelně zařízené pokoje s televizí a bezplatným Wi-Fi. K dispozici je zahrada s posezením, gril, dětské hřiště, úschovna a půjčovna kol. Domácí zvířata jsou vítána!</p>
+        </div>
+
+        <div class="grid-2">
+            <div>
+                <h3>Pokoje s vlastním sociálním zařízením</h3>
+                <table>
+                    <tr><th>Typ pokoje</th><th>1 noc</th><th>2 a více nocí</th></tr>
+                    <tr><td>2lůžkový</td><td>1 300 Kč</td><td>1 200 Kč</td></tr>
+                    <tr><td>4lůžkový</td><td>2 100 Kč</td><td>2 000 Kč</td></tr>
+                    <tr><td>7lůžkový (apartmán s kuchyňkou)</td><td>2 500 Kč</td><td>2 400 Kč</td></tr>
+                </table>
+            </div>
+            <div>
+                <h3>Pokoje se společnou koupelnou</h3>
+                <table>
+                    <tr><th>Typ pokoje</th><th>1 noc</th><th>2 a více nocí</th></tr>
+                    <tr><td>1lůžkový</td><td>600 Kč</td><td>550 Kč</td></tr>
+                    <tr><td>2lůžkový</td><td>1 050 Kč</td><td>950 Kč</td></tr>
+                </table>
+                <p style="margin-top: 15px; font-size: 0.9rem;"><em>Check-in: 14:00 - Check-out: 11:00.<br>Rekreační poplatek 30 Kč/noc (osoby starší 18 let) není v ceně.</em></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="kemp">
+        <div class="center-heading">
+            <h2>Kemp a chatky</h2>
+            <p style="max-width: 800px; margin: auto; font-size: 1.1rem;">Kemp se nachází v podhůří Jeseníků. K dispozici je společná kuchyň s lednicí a mikrovlnkou, ohniště, gril a bezplatné čisté sprchy bez žetonů.</p>
+        </div>
+
+        <div class="alert-box">
+            ⚠️ Pozor! Místa v kempu (pro stan, auto, přívěs, karavan) předem NEREZERVUJEME. Jednoduše přijeďte.
+        </div>
+
+        <div class="grid-2">
+            <div>
+                <h3>Ceník kempování (za noc)</h3>
+                <table>
+                    <tr><td>Dospělá osoba</td><td>90 Kč</td></tr>
+                    <tr><td>Dítě</td><td>60 Kč</td></tr>
+                    <tr><td>Stan / Auto</td><td>80 Kč / 80 Kč</td></tr>
+                    <tr><td>Karavan / Přívěs / Minibus</td><td>120 Kč / 100 Kč / 100 Kč</td></tr>
+                    <tr><td>Elektrická přípojka</td><td>120 Kč</td></tr>
+                    <tr><td>Motocykl / Kolo</td><td>50 Kč / 20 Kč</td></tr>
+                    <tr><td>Domácí zvíře</td><td>50 Kč</td></tr>
+                </table>
+                <p style="margin-top: 15px; font-size: 0.9rem;"><em>Rekreační poplatek 30 Kč/noc (osoby nad 18 let).</em></p>
+            </div>
+            <div class="features-box">
+                <h3>Chatky a nadstandard</h3>
+                <ul class="custom-list">
+                    <li><strong>Velká Chatka (pro 3 osoby):</strong> 700 Kč / noc</li>
+                    <li><strong>Ložní prádlo (chatka):</strong> 50 Kč / osoba (jednorázově)</li>
+                    <li><strong>Pronájem:</strong> Nabízíme i pronájem přívěsů a maringotek pro větší skupiny.</li>
+                    <li><strong>Teplá voda:</strong> Ve sprchách kdykoliv, zdarma, bez žetonů.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer id="kontakt">
+        <h2>Těšíme se na vaši návštěvu</h2>
+        <div class="contact-grid">
+            <div>
+                <h3>Kde nás najdete</h3>
+                <p><strong>Penzion a kemp Mlýn</strong></p>
+                <p>Rudé Armády 1 (proti benzinové stanici)</p>
+                <p>788 15 Velké Losiny</p>
+            </div>
+            <div>
+                <h3>Kontakt a rezervace</h3>
+                <p>📞 +420 602 722 833</p>
+                <p>📞 +420 607 964 148</p>
+                <p>✉️ info@penzion-mlyn.eu</p>
+            </div>
+            <div>
+                <h3>Provozovatel</h3>
+                <p>MM IMPEX, spol. s.r.o.</p>
+                <p>IČ: 255 61 529, DIČ: CZ25561529</p>
+            </div>
+        </div>
+        <p style="margin-top: 30px; font-size: 0.8rem; opacity: 0.7;">&copy; 2026 Penzion a kemp Mlýn, Velké Losiny</p>
+    </footer>
+
+</body>
+</html>
