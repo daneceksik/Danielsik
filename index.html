@@ -83,14 +83,54 @@
             transition: top 0.3s ease;
         }
 
-        .nav-container {
+        /* --- HLAVNÍ NAVIGACE (Základní nastavení) --- */
+.nav-container {
     max-width: 1100px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
-    flex-wrap: nowrap; /* Zabrání zalomení prvků pod sebe */
+    padding: 0 15px;
+    flex-wrap: nowrap; /* Striktně zakáže skok prvků pod sebe */
+    gap: 10px; /* Jistota, že mezi logem a menu bude vždy mezera */
+}
+
+nav { 
+    display: flex; 
+    gap: 12px; 
+    align-items: center; 
+    flex-shrink: 1; /* Umožní menu se přizpůsobit */
+}
+
+/* --- RESPONZIVITA (Pro mobily, aby se vše vešlo do jedné řady) --- */
+@media (max-width: 650px) {
+    header {
+        padding: 0.5rem 0; /* Zúžení hlavičky pro úsporu místa */
+    }
+
+    .nav-container {
+        padding: 0 10px;
+        gap: 5px; /* Minimální mezera mezi logem a menu na mobilu */
+    }
+
+    .logo { 
+        font-size: 1.3rem; /* Zmenšení loga, aby nepřekáželo menu */
+    }
+
+    nav { 
+        gap: 4px; /* Zmenšení mezer mezi odkazy v menu */
+    }
+
+    nav a { 
+        font-size: 0.75rem; /* Menší písmo pro mobily */
+        padding: 6px 8px; /* Menší "bubliny" kolem textu v menu */
+    }
+
+    #theme-toggle {
+        font-size: 1.1rem;
+        margin-left: 2px;
+        padding: 4px;
+    }
 }
 .logo { 
     font-weight: bold; 
