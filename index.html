@@ -204,6 +204,7 @@ nav {
             background-size: 300% 300%;
             animation: gradient 5s ease infinite;
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -340,6 +341,48 @@ nav {
     #theme-toggle { font-size: 1.4rem; margin-left: 5px; }
     .contact-form { padding: 20px; }
     .btn { width: 100%; text-align: center; }
+}
+/* --- COOKIE LIŠTA --- */
+.cookie-bar {
+    position: fixed;
+    bottom: -200px; /* Schovaná hlouběji pod okrajem */
+    left: 0;
+    width: 100%;
+    background: #1e293b;
+    border-top: 2px solid #00d2ff;
+    padding: 20px 0;
+    z-index: 99999;
+    transition: bottom 0.8s ease-in-out;
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.5);
+}
+.cookie-bar.active { 
+    bottom: 0 !important; /* Toto ji vysune nahoru */
+}
+.cookie-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+.cookie-text p { color: #f8fafc; font-size: 0.9rem; margin: 0; line-height: 1.4; }
+.cookie-buttons { display: flex; gap: 10px; }
+.btn-cookie {
+    padding: 10px 22px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 0.85rem;
+    border: none;
+}
+.btn-cookie.accept { background: #00d2ff; color: #0f172a; }
+.btn-cookie.reject { background: transparent; color: #f8fafc; border: 1px solid #334155; }
+
+@media (max-width: 768px) {
+    .cookie-content { flex-direction: column; text-align: center; }
 }
     </style>
 </head>
@@ -511,7 +554,9 @@ nav {
 </footer>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
 <script>
+    //HLAVNI SCRIPT
     AOS.init({ duration: 1000, once: true });
 
     // Progress Bar
@@ -545,14 +590,30 @@ nav {
     });
 
     // Dark/Light toggle
-    const toggleBtn = document.getElementById('theme-toggle');
-    const body = document.body;
-    const icon = toggleBtn.querySelector('i');
-    toggleBtn.addEventListener('click', () => {
-        body.classList.toggle('light-mode');
-        icon.classList.toggle('fa-moon');
-        icon.classList.toggle('fa-sun');
-    });
+   // Dark/Light toggle s pamětí
+const toggleBtn = document.getElementById('theme-toggle');
+const body = document.body;
+const icon = toggleBtn.querySelector('i');
+
+// 1. Kontrola, zda uživatel už dříve zvolil režim
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'light') {
+    body.classList.add('light-mode');
+    icon.classList.replace('fa-moon', 'fa-sun');
+}
+
+toggleBtn.addEventListener('click', () => {
+    body.classList.toggle('light-mode');
+    
+    // 2. Uložení aktuální volby do paměti
+    if (body.classList.contains('light-mode')) {
+        localStorage.setItem('theme', 'light');
+        icon.classList.replace('fa-moon', 'fa-sun');
+    } else {
+        localStorage.setItem('theme', 'dark');
+        icon.classList.replace('fa-sun', 'fa-moon');
+    }
+});
 
     // Typing efekt
     const textElement = document.getElementById('typing-text');
@@ -578,7 +639,51 @@ nav {
       }
     }
     type();
+    document.addEventListener("DOMContentLoaded", function() {
+    const cookieBar = document.getElementById("cookie-bar");
+    const acceptBtn = document.getElementById("cookie-accept");
+    const rejectBtn = document.getElementById("cookie-reject");
+
+    // Kontrola a zobrazení
+    if (!localStorage.getItem("cookieConsent")) {
+        setTimeout(() => {
+            if (cookieBar) {
+                cookieBar.classList.add("active");
+                console.log("Lišta aktivována");
+            }
+        }, 1500);
+    }
+
+    // Tlačítko Přijmout
+    if (acceptBtn) {
+        acceptBtn.onclick = function() {
+            localStorage.setItem("cookieConsent", "accepted");
+            cookieBar.classList.remove("active");
+            // Zde můžeš volat funkci activateAnalytics(); pokud ji máš definovanou
+        };
+    }
+
+    // Tlačítko Odmítnout
+    if (rejectBtn) {
+        rejectBtn.onclick = function() {
+            localStorage.setItem("cookieConsent", "rejected");
+            cookieBar.classList.remove("active");
+        };
+    }
+});
 </script>
+<div id="cookie-bar" class="cookie-bar">
+    <div class="cookie-content">
+        <div class="cookie-text">
+            <p><strong>Soukromí a Cookies</strong> 🍪<br>
+            Tento web používá cookies k analýze návštěvnosti.</p>
+        </div>
+        <div class="cookie-buttons">
+            <button id="cookie-accept" class="btn-cookie accept">Přijmout vše</button>
+            <button id="cookie-reject" class="btn-cookie reject">Pouze nezbytné</button>
+        </div>
+    </div>
+</div>
 <script async type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
 <zapier-interfaces-chatbot-embed is-popup='true' chatbot-id='cmobgg347004wi5ikincm69l6'></zapier-interfaces-chatbot-embed>
 </body>
